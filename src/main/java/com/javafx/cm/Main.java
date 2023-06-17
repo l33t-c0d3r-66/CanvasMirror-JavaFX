@@ -18,10 +18,10 @@ public class Main extends Application {
         Scene scene = new Scene(loader.load());
         stage.setTitle("Canvas Mirror");
         stage.setScene(scene);
-        stage.setMinWidth(780);
-        stage.setMinHeight(600);
-        stage.setMaxWidth(800);
-        stage.setMaxHeight(620);
+        stage.setMinWidth(1130);
+        stage.setMinHeight(670);
+        stage.setMaxWidth(1200);
+        stage.setMaxHeight(700);
         stage.show();
    }
 
