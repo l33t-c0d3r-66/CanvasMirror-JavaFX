@@ -1,7 +1,9 @@
 package com.javafx.cm.controller;
 
+import com.javafx.cm.utils.CanvasMirror;
 import com.javafx.cm.utils.Constants;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -37,11 +39,17 @@ public class MainController {
                 inputImageView.setImage(image);
             } else {
               // Show Error Message Here
-                System.out.println("Not Image");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Canvas Mirror");
+                alert.setHeaderText("Please Select Valid png Image");
+                alert.showAndWait();
             }
         } else {
             // Show Error Messages Here
-            System.out.println("Null File");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Canvas Mirror");
+            alert.setHeaderText("Please Select a File");
+            alert.showAndWait();
         }
     }
 
@@ -49,18 +57,43 @@ public class MainController {
     public void convertImage() {
        String sizeOfCanvasText = sizeOfCanvas.getText();
        Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
-       if(pattern.matcher(sizeOfCanvasText).matches() ) {
-            int sizeOfCanvas = Integer.parseInt(sizeOfCanvasText);
+       if(filePathTextField.getText().isEmpty()) {
+           if(pattern.matcher(sizeOfCanvasText).matches() ) {
+               int sizeOfCanvas = Integer.parseInt(sizeOfCanvasText);
+               CanvasMirror canvasMirror = new CanvasMirror();
 
-            if(sizeOfCanvas > Constants.MAX_CANVAS_SIZE) {
-                // Show Message
-            } else {
-                // Do Processing
-            }
+               if(sizeOfCanvas > Constants.MAX_CANVAS_SIZE) {
+                   // Show Message
+                   String outputImagePath = canvasMirror.canvasMirrorEffect(filePathTextField.getText(),sizeOfCanvas);
+                   Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                   alert.setTitle("Canvas Mirror");
+                   alert.setHeaderText("The Image might look different for this size");
+                   alert.showAndWait();
+                   if(outputImagePath != null) {
+                       Image outputImage = new Image(new File(outputImagePath).toURI().toString());
+                       outputImageView.setImage(outputImage);
+                   }
+               } else {
+                   // Do Processing
+                   String outputImagePath = canvasMirror.canvasMirrorEffect(filePathTextField.getText(),sizeOfCanvas);
+                   if(outputImagePath != null) {
+                       Image outputImage = new Image(new File(outputImagePath).toURI().toString());
+                       outputImageView.setImage(outputImage);
+                   }
+               }
 
+           } else {
+               Alert alert = new Alert(Alert.AlertType.ERROR);
+               alert.setTitle("Canvas Mirror");
+               alert.setHeaderText("Please Enter Valid Canvas Size");
+               alert.showAndWait();
+           }
        } else {
-           // Error Message Not a Number
-           System.out.println("Not a Number");
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+           alert.setTitle("Canvas Mirror");
+           alert.setHeaderText("Please Select a png image");
+           alert.showAndWait();
        }
+
     }
 }
