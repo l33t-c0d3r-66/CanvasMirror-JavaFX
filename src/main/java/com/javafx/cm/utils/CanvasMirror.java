@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
@@ -231,17 +232,17 @@ public class CanvasMirror
      * <p>Checks the Operating system and create a directory to store output Images in App Data or Home</p>
      * @return a string that contain path to internal directory.
      */
-    private String getOutputDirectory() {
+    public String getOutputDirectory() {
         String workingDirectory;
         //Getting name of operating system using system property
         String operatingSystemName = (System.getProperty("os.name")).toUpperCase();
         //Checking if operating system is windows or not
         if (operatingSystemName.contains("WIN")) {
             workingDirectory = System.getenv("AppData");
-            workingDirectory+= "\\mirror\\";
+            workingDirectory+= "\\canvas-mirror\\";
         } else {
             workingDirectory = System.getProperty("user.home");
-            workingDirectory += "\\mirror\\";
+            workingDirectory += "\\canvas-mirror\\";
         }
         File file = new File(workingDirectory);
         //Creating the directory for the first time
@@ -249,6 +250,17 @@ public class CanvasMirror
         if(isDirectoryCreated)
             System.out.println("Directory Created!");
         return workingDirectory;
+    }
+
+    public boolean moveFileToAnotherDestination(File sourceFile, Path movedPath) {
+        try {
+            Path originalPath = Paths.get(getOutputDirectory()+sourceFile.getName());
+            Path result = Files.move(originalPath, movedPath);
+            return result != null;
+        }catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
     }
 }
 

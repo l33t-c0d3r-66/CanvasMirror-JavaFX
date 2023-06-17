@@ -22,6 +22,6 @@
       <Label layoutX="811.0" layoutY="625.0" text="Output Image" />
       <TextField fx:id="sizeOfCanvas" layoutX="191.0" layoutY="143.0" prefHeight="25.0" prefWidth="752.0" />
       <Label layoutX="14.0" layoutY="147.0" prefHeight="17.0" prefWidth="196.0" text="Enter the size of canvas" />
-      <Button layoutX="970.0" layoutY="143.0" mnemonicParsing="false" onAction="#convertImage" prefHeight="25.0" prefWidth="130.0" text="Convert Image" />
+      <Button fx:id="convertImageBtn" layoutX="970.0" layoutY="143.0" mnemonicParsing="false" onAction="#convertImage" prefHeight="25.0" prefWidth="130.0" text="Transform Image" />
    </children>
 </AnchorPane>
