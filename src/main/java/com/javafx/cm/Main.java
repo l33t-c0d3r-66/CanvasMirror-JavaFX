@@ -1,0 +1,28 @@
+package com.javafx.cm;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+
+    public static void main(String[] args) throws Exception{
+        launch(args);
+    }
+
+    public void start(Stage stage) throws Exception{
+        String fxmlFile = "/fxml/Main.fxml";
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+
+        Scene scene = new Scene(loader.load());
+        stage.setTitle("Canvas Mirror");
+        stage.setScene(scene);
+        stage.setMinWidth(780);
+        stage.setMinHeight(600);
+        stage.setMaxWidth(800);
+        stage.setMaxHeight(620);
+        stage.show();
+   }
+
+}
