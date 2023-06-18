@@ -5,7 +5,7 @@
 <li> It Takes an Image as an input and takes the Canvas Size. The Image Size is added to the canvas size and new image size is computed from it.
 <li> After Computing the New Image Size it mirrors the original image and add mirroing effect to the sides. Take a look at image.
   
-  
+<img src="https://github.com/l33t-c0d3r-66/CanvasMirror-JavaFX/blob/master/screenshots/explain.png">  
   
 
 
@@ -23,5 +23,10 @@
 
   
 ## Project Images
-
-<img src="">
+  
+<img src="https://github.com/l33t-c0d3r-66/CanvasMirror-JavaFX/blob/master/screenshots/ss1.PNG">
+  
+<img src="https://github.com/l33t-c0d3r-66/CanvasMirror-JavaFX/blob/master/screenshots/ss2.PNG">
+  
+<img src="https://github.com/l33t-c0d3r-66/CanvasMirror-JavaFX/blob/master/screenshots/ss3.PNG">
+    
